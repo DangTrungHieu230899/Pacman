@@ -12,7 +12,7 @@ import character.Pacman;
 public class Game {
 	ArrayList<Actor> actors = new ArrayList<Actor>();
 	Background background;
-	ControlScore score = new ControlScore();
+	public ControlScore score = new ControlScore();
 
 	public Game() {
 		background = new Background();

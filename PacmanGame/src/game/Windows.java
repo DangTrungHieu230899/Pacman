@@ -30,10 +30,11 @@ public class Windows extends JFrame {
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 
 		game = new GameScreen();
-		add(game,BorderLayout.CENTER);
+//		add(game,BorderLayout.CENTER);
+		getContentPane().add(game);
 		
-		info = new DisplayInfo();
-		add(info,BorderLayout.EAST);
+//		info = new DisplayInfo();
+//		add(info,BorderLayout.EAST);
 		
 		pack();
 		setLocationRelativeTo(null);

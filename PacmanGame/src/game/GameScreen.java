@@ -1,5 +1,6 @@
 package game;
 
+import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -7,6 +8,7 @@ import java.awt.Graphics2D;
 import javax.swing.JPanel;
 
 import character.PlayerInfo;
+import view.DisplayInfo;
 
 public class GameScreen extends JPanel {
 
@@ -14,14 +16,20 @@ public class GameScreen extends JPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	public static final int WIDTH = 455;
+	public static final int WIDTH = 695;
 	public static final int HEIGHT = 510;
 	private boolean running;
 	private Game game;
+	private DisplayInfo info;
 
 	public GameScreen() {
 		game = new Game();
+
+		setLayout(new BorderLayout());
 		PlayerInfo player = new PlayerInfo(game.score);
+		info = new DisplayInfo(player);
+		player.setInfo(info);
+		add(info,BorderLayout.EAST);
 
 		addKeyListener(new Keyboard());
 		setFocusable(true);
@@ -44,7 +52,6 @@ public class GameScreen extends JPanel {
 
 	private void update() {
 		game.update();
-
 	}
 
 	private void draw(Graphics2D g) {
