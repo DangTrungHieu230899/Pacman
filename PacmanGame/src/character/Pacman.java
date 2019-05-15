@@ -15,6 +15,8 @@ public class Pacman extends Actor {
 
 	BufferedImage packman;
 	BufferedImage pills;
+	BufferedImage overGame;
+	BufferedImage winGame;
 	int frame;
 	int reqDir, curDir;
 
@@ -26,11 +28,12 @@ public class Pacman extends Actor {
 	public int totalPill;
 	public int countPill;
 	public boolean over;
-
+	public boolean win;
 
 	public Pacman() {
 		over = false;
 		dead = false;
+		win = false;
 		cells = mazes[mazeNo].getCells();
 		rows = mazes[mazeNo].rows;// 260
 		columns = mazes[mazeNo].columns;// 228
@@ -46,6 +49,8 @@ public class Pacman extends Actor {
 		try {
 			packman = ImageIO.read(Pacman.class.getResource("/images/packman.png"));
 			pills = ImageIO.read(Pacman.class.getResource("/images/packman_sheet.png"));
+			overGame = ImageIO.read(Pacman.class.getResource("/images/over.png"));
+			winGame = ImageIO.read(Pacman.class.getResource("/images/wingame.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -140,21 +145,32 @@ public class Pacman extends Actor {
 	final char WALL = '0';
 
 	public void draw(Graphics2D g) {
-
-		g.setColor(Color.WHITE);
-		for (int r = 0; r < mazes[mazeNo].rows; r++) {
-			for (int c = 0; c < mazes[mazeNo].columns; c++) {
-				if (cells[r][c] == PILL) {
-					g.drawImage(pills.getSubimage(46, 4, 12, 12), c * STEP - alignPill, r * STEP - alignPill, null);
-				} else if (cells[r][c] == POWER_PILL) {
-					g.drawImage(pills.getSubimage(3, 0, 20, 20), c * STEP - alignPower, r * STEP - alignPower, null);
+		if (dead == false) {
+			g.setColor(Color.WHITE);
+			for (int r = 0; r < mazes[mazeNo].rows; r++) {
+				for (int c = 0; c < mazes[mazeNo].columns; c++) {
+					if (cells[r][c] == PILL) {
+						g.drawImage(pills.getSubimage(46, 4, 12, 12), c * STEP - alignPill, r * STEP - alignPill, null);
+					} else if (cells[r][c] == POWER_PILL) {
+						g.drawImage(pills.getSubimage(3, 0, 20, 20), c * STEP - alignPower, r * STEP - alignPower,
+								null);
+					}
 				}
 			}
+			g.drawImage(packman.getSubimage((frame / 2) * distanceImage, (curDir - MOVE_LEFT) * distanceImage,
+					widthPacman, heightPacman), x * STEP - radius, y * STEP - radius, null);
+
 		}
-		g.drawImage(packman.getSubimage((frame / 2) * distanceImage, (curDir - MOVE_LEFT) * distanceImage, widthPacman,
-				heightPacman), x * STEP - radius, y * STEP - radius, null);
-		
-	
+		if (over && dead == true) {
+
+			g.drawImage(overGame, 160, 217, null);
+
+			g.drawRect(0, 0, 456, 520);
+		}
+
+		if (win) {
+			g.drawImage(winGame, 127, 124, null);
+		}
 
 	}
 

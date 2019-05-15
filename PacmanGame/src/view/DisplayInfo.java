@@ -2,6 +2,7 @@ package view;
 
 import java.awt.GridLayout;
 import java.awt.Panel;
+import java.awt.event.MouseAdapter;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -11,13 +12,13 @@ import javax.swing.JTextField;
 
 import character.PlayerInfo;
 
-public class DisplayInfo extends JPanel {
+public class DisplayInfo extends JPanel  {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	public JLabel jtime, jscore, jhightScore;
-	public JButton button1, button2, button3;
+	public JButton button1, button2, button3, button4;
 	public JTextField textScrore, textHightScore;
 	public JTextArea textArea;
 	PlayerInfo player;
@@ -26,12 +27,12 @@ public class DisplayInfo extends JPanel {
 		this.player = player;
 		init();
 	}
+
 	public DisplayInfo() {
 	}
 
-
 	public void init() {
-		setSize(200,510);
+		setSize(200, 510);
 		jscore = new JLabel("SCORE:");
 		jhightScore = new JLabel("HIGH SCORE:");
 		jtime = new JLabel("TIME");
@@ -53,11 +54,25 @@ public class DisplayInfo extends JPanel {
 
 		Panel panel2 = new Panel();
 		button1 = new JButton("START");
+		button3 = new JButton("PAUSE");
+		button4 = new JButton("NEW GAME");
+		panel2.add(button4);
+		panel2.add(button3);
 		panel2.add(button1);
 		add(panel2);
+		
+		button1.addMouseListener(new MouseAdapter() {
+			
+		});
+
+		JPanel pan1 = new JPanel();
+		pan1.setLayout(new GridLayout(2, 1));
+		pan1.add(panel1);
+		pan1.add(panel2);
+		add(pan1);
 
 		Panel panel3 = new Panel();
-		textArea = new JTextArea(5, 20);
+		textArea = new JTextArea(7, 20);
 		panel3.add(textArea);
 		add(panel3);
 
@@ -66,20 +81,32 @@ public class DisplayInfo extends JPanel {
 		panel4.add(button2);
 		add(panel4);
 
-		Panel panel5 = new Panel();
-		panel5.setLayout(new GridLayout(4, 1, 20, 20));
-		panel5.add(panel1);
-		panel5.add(panel2);
-		panel5.add(panel3);
-		panel5.add(panel4);
-		add(panel5);
+		JPanel pan2 = new JPanel();
+		pan2.setLayout(new GridLayout(2, 1));
+		pan2.add(panel3);
+		pan2.add(panel4);
+		add(pan2);
+
+		JPanel pan3 = new JPanel();
+		pan3.setLayout(new GridLayout(2, 1));
+		pan3.add(pan1);
+		pan3.add(pan2);
+		add(pan3);
+
+//		Panel panel5 = new Panel();
+//		panel5.setLayout(new GridLayout(4, 1, 20, 20));
+//		panel5.add(panel1);
+//		panel5.add(panel2);
+//		panel5.add(panel3);
+//		panel5.add(panel4);
+//		add(panel5);
 
 	}
-	
+
 	public void setScore(int score) {
-		
+
 		textScrore.setText(String.valueOf(score));
-		
+
 	}
 
 }
