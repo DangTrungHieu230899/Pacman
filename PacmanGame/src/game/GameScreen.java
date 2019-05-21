@@ -12,9 +12,6 @@ import view.DisplayInfo;
 
 public class GameScreen extends JPanel {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	public static final int WIDTH = 715;
 	public static final int HEIGHT = 510;
@@ -29,7 +26,7 @@ public class GameScreen extends JPanel {
 		PlayerInfo player = new PlayerInfo(game.score);
 		info = new DisplayInfo(player);
 		player.setInfo(info);
-		add(info,BorderLayout.EAST);
+		add(info, BorderLayout.EAST);
 
 		addKeyListener(new Keyboard());
 		setFocusable(true);

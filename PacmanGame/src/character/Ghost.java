@@ -18,6 +18,7 @@ public class Ghost extends Actor {
 	public int rows;
 	public int columns;
 	int frame, count;
+	int frame2, count2;
 	public boolean dead;
 	public int edibleCountDown;
 	BufferedImage ghost;
@@ -28,7 +29,7 @@ public class Ghost extends Actor {
 
 	public Ghost(String path) {
 		try {
-			ghost = ImageIO.read(Pacman.class.getResource("/images/blueGhostChange.png"));
+			ghost = ImageIO.read(Pacman.class.getResource("/images/DieGhost.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -40,6 +41,8 @@ public class Ghost extends Actor {
 		frame = 0;
 		count = 1;
 		speed = 5;
+		frame2 = 0;
+		count2 = 0;
 		Random random = new Random();
 		direction = random.nextInt(4) + MOVE_LEFT;
 
@@ -53,6 +56,13 @@ public class Ghost extends Actor {
 				frame = 0;
 				count = 1;
 			}
+			frame2++;
+			count2++;
+			if (frame2 > 1) {
+				frame2 = 0;
+				count2 = 1;
+			}
+
 			move(direction);
 			if (isCollission()) {
 				Random r = new Random();
@@ -131,7 +141,9 @@ public class Ghost extends Actor {
 		if (edibleCountDown <= 0) {
 			g.drawImage(image.getSubimage((frame * 26) + (count - 1) * 3, 0, 26, 26), x * 2 - 14, y * 2 - 14, null);
 		} else {
-			g.drawImage(ghost, x * 2 - 14, y * 2 - 14, null);
+//			g.drawImage(ghost, x * 2 - 14, y * 2 - 14, null);
+			g.drawImage(ghost.getSubimage((frame2 * 27) + (count2 - 1) * 4, 0, 27, 27), x * 2 - 14, y * 2 - 14, null);
+
 		}
 
 	}
