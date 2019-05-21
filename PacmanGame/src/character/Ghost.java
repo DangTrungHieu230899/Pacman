@@ -28,7 +28,7 @@ public class Ghost extends Actor {
 
 	public Ghost(String path) {
 		try {
-			ghost = ImageIO.read(Pacman.class.getResource("/images/packman_sheet.png"));
+			ghost = ImageIO.read(Pacman.class.getResource("/images/blueGhostChange.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -131,7 +131,7 @@ public class Ghost extends Actor {
 		if (edibleCountDown <= 0) {
 			g.drawImage(image.getSubimage((frame * 26) + (count - 1) * 3, 0, 26, 26), x * 2 - 14, y * 2 - 14, null);
 		} else {
-			g.drawImage(ghost.getSubimage(111, 20, 28, 28), x * 2 - 14, y * 2 - 14, null);
+			g.drawImage(ghost, x * 2 - 14, y * 2 - 14, null);
 		}
 
 	}
