@@ -7,12 +7,12 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 public class Background {
-	BufferedImage[] mazeImages = new BufferedImage[4];
+	BufferedImage mazeImages ;
 	int mazeNo = 0;
 	int m = 0;
 	public Background() {
 		try {
-			mazeImages[m] = ImageIO.read(Pacman.class.getResource("/images/00.png"));
+			mazeImages = ImageIO.read(Pacman.class.getResource("/images/00.png"));
 			
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -20,6 +20,6 @@ public class Background {
 	}
 
 	public void draw(Graphics2D g) {
-		g.drawImage(mazeImages[mazeNo], 0, 0, null);
+		g.drawImage(mazeImages, 0, 0, null);
 	}
 }

@@ -42,7 +42,7 @@ public class Ghost extends Actor {
 		count = 1;
 		speed = 5;
 		frame2 = 0;
-		count2 = 0;
+		count2 = 1;
 		Random random = new Random();
 		direction = random.nextInt(4) + MOVE_LEFT;
 

@@ -13,6 +13,7 @@ public class Maze {
 	int rows, columns;
 	int row2, column2;
 	int countPill;
+	
 	// parameter load map
 	public Maze(int m) {
 		try {
