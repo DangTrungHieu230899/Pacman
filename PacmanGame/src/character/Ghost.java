@@ -14,7 +14,6 @@ public class Ghost extends Actor {
 	char[][] cells;
 	int width = 28;
 	int height = 28;
-	int mazeNo = 0;
 	public int rows;
 	public int columns;
 	int frame, count;
@@ -34,10 +33,10 @@ public class Ghost extends Actor {
 			e.printStackTrace();
 		}
 		image = Util.loadImage(path);
-		rows = mazes[mazeNo].rows;
-		columns = mazes[mazeNo].columns;
-		y = mazes[mazeNo].row2;
-		x = mazes[mazeNo].column2;
+		rows = mazes.rows;
+		columns = mazes.columns;
+		y = mazes.row2;
+		x = mazes.column2;
 		frame = 0;
 		count = 1;
 		speed = 5;
@@ -77,22 +76,22 @@ public class Ghost extends Actor {
 		// Right
 		switch (direction) {
 		case KeyEvent.VK_LEFT: // 37
-			if (x > 0 && mazes[mazeNo].charAt(y, x - 1) == '0') {
+			if (x > 0 && mazes.charAt(y, x - 1) == '0') {
 				return true;
 			}
 			break;
 		case KeyEvent.VK_UP: // 38
-			if (y > 0 && mazes[mazeNo].charAt(y - 1, x) == '0') {
+			if (y > 0 && mazes.charAt(y - 1, x) == '0') {
 				return true;
 			}
 			break;
 		case KeyEvent.VK_RIGHT: // 39
-			if (x < columns - 1 && mazes[mazeNo].charAt(y, x + 1) == '0') {
+			if (x < columns - 1 && mazes.charAt(y, x + 1) == '0') {
 				return true;
 			}
 			break;
 		case KeyEvent.VK_DOWN: // 40
-			if (y < rows - 1 && mazes[mazeNo].charAt(y + 1, x) == '0') {
+			if (y < rows - 1 && mazes.charAt(y + 1, x) == '0') {
 				return true;
 			}
 			break;
@@ -107,7 +106,7 @@ public class Ghost extends Actor {
 		switch (reqDir) {
 
 		case MOVE_LEFT:
-			if (x > 0 && mazes[mazeNo].charAt(y, x - 1) != '0') {
+			if (x > 0 && mazes.charAt(y, x - 1) != '0') {
 				x -= 1;
 
 				return SUCCESS;
@@ -115,19 +114,19 @@ public class Ghost extends Actor {
 
 			break;
 		case MOVE_UP:
-			if (y > 0 && mazes[mazeNo].charAt(y - 1, x) != '0') {
+			if (y > 0 && mazes.charAt(y - 1, x) != '0') {
 				y -= 1;
 				return SUCCESS;
 			}
 			break;
 		case MOVE_RIGHT: // 39
-			if (x < columns - 1 && mazes[mazeNo].charAt(y, x + 1) != '0') {
+			if (x < columns - 1 && mazes.charAt(y, x + 1) != '0') {
 				x += 1;
 				return SUCCESS;
 			}
 			break;
 		case MOVE_DOWN: // 40
-			if (y < rows - 1 && mazes[mazeNo].charAt(y + 1, x) != '0') {
+			if (y < rows - 1 && mazes.charAt(y + 1, x) != '0') {
 				y += 1;
 				return SUCCESS;
 			}

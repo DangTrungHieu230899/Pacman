@@ -10,14 +10,11 @@ public abstract class Actor {
 	public static final int MOVE_UP = KeyEvent.VK_UP;
 	public static final int MOVE_DOWN = KeyEvent.VK_DOWN;
 	public final int STEP = 2;
-	public Maze[] mazes = new Maze[4];
+	public Maze mazes;
 	public int mazeNo = 0;
 
 	public Actor() {
-		mazes = new Maze[4];
-		for (int m = 0; m < 4; m++) {
-			mazes[m] = new Maze(m);
-		}
+		mazes = new Maze(mazeNo);
 	}
 
 	public abstract void update();

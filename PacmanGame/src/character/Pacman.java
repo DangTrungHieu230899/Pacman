@@ -23,7 +23,6 @@ public class Pacman extends Actor {
 
 	public int columns, rows;
 	ArrayList<String> lines = new ArrayList<String>();
-	int mazeNo = 0;
 	public char[][] cells;
 	public boolean dead;
 	public int totalPill;
@@ -35,15 +34,15 @@ public class Pacman extends Actor {
 		over = false;
 		dead = false;
 		win = false;
-		cells = mazes[mazeNo].getCells();
-		rows = mazes[mazeNo].rows;// 260
-		columns = mazes[mazeNo].columns;// 228
+		cells = mazes.getCells();
+		rows = mazes.rows;// 260
+		columns = mazes.columns;// 228
 
-		y = mazes[mazeNo].row;
-		x = mazes[mazeNo].column;
+		y = mazes.row;
+		x = mazes.column;
 
 		frame = 0;
-		totalPill = mazes[mazeNo].countPill;
+		totalPill = mazes.countPill;
 		countPill = 0;
 		curDir = reqDir = MOVE_RIGHT;
 
@@ -101,7 +100,7 @@ public class Pacman extends Actor {
 		switch (reqDir) {
 
 		case KeyEvent.VK_LEFT: // 37
-			if (x > 0 && mazes[mazeNo].charAt(y, x - 1) != WALL) {
+			if (x > 0 && mazes.charAt(y, x - 1) != WALL) {
 				x -= 1;
 
 				return SUCCESS;
@@ -113,19 +112,19 @@ public class Pacman extends Actor {
 
 			break;
 		case KeyEvent.VK_UP: // 38
-			if (y > 0 && mazes[mazeNo].charAt(y - 1, x) != WALL) {
+			if (y > 0 && mazes.charAt(y - 1, x) != WALL) {
 				y -= 1;
 				return SUCCESS;
 			}
 			break;
 		case KeyEvent.VK_RIGHT: // 39
-			if (x < columns - 1 && mazes[mazeNo].charAt(y, x + 1) != WALL) {
+			if (x < columns - 1 && mazes.charAt(y, x + 1) != WALL) {
 				x += 1;
 				return SUCCESS;
 			}
 			break;
 		case KeyEvent.VK_DOWN: // 40
-			if (y < rows - 1 && mazes[mazeNo].charAt(y + 1, x) != WALL) {
+			if (y < rows - 1 && mazes.charAt(y + 1, x) != WALL) {
 				y += 1;
 				return SUCCESS;
 			}
@@ -149,8 +148,8 @@ public class Pacman extends Actor {
 	public void draw(Graphics2D g) {
 		if (dead == false) {
 			g.setColor(Color.WHITE);
-			for (int r = 0; r < mazes[mazeNo].rows; r++) {
-				for (int c = 0; c < mazes[mazeNo].columns; c++) {
+			for (int r = 0; r < mazes.rows; r++) {
+				for (int c = 0; c < mazes.columns; c++) {
 					if (cells[r][c] == PILL) {
 						g.drawImage(pill, c * STEP - alignPill, r * STEP - alignPill, null);
 					} else if (cells[r][c] == POWER_PILL) {
